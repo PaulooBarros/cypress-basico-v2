@@ -18,5 +18,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Live Server
+        run: npm install -g live-server
+
+      - name: Start Live Server
+        run: live-server --port=5500 --no-browser &
+        env:
+          PORT: 5500
+
       - name: Run Cypress tests
-        run: npm test
+        run: npx cypress run --config-file=cypress.config.js
+        env:
+          CYPRESS_BASE_URL: http://localhost:5500
