@@ -1,12 +1,25 @@
 name: End-to-end tests 🧪
+
 on: [push]
+
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # ou a versão que você está usando
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v2
+        with:
+          start: npm start # se você usa um comando para iniciar o servidor
