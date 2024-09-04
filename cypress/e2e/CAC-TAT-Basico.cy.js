@@ -70,4 +70,13 @@ describe('template spec', () => {
   it("Retorna sucesso ao clicar na página política e privacidade e abrir nova página",()=>{
     cy.get('#privacy a ').click()
   })
+
+  it.only("Retorna Sucesso ao envio de arquivo",()=>{
+    cy.get('input[type="file"]#file-upload')
+            .should('not.have.value')
+            .selectFile('./cypress/fixtures/example.json')
+            .should(function($input){
+                expect($input[0].files[0].name).to.equal('example.json')
+            })
+  })
 });
