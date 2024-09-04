@@ -71,7 +71,7 @@ describe('template spec', () => {
     cy.get('#privacy a ').click()
   })
 
-  it.only("Retorna Sucesso ao envio de arquivo",()=>{
+  it("Retorna Sucesso ao envio de arquivo",()=>{
     cy.get('input[type="file"]#file-upload')
             .should('not.have.value')
             .selectFile('./cypress/fixtures/example.json')
